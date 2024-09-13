@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: SpringCoursera
+  datasource:
+    url: jdbc:mysql://localhost:3307/coursera
+    username: root
+    password: 123
+
+  jpa:
+    hibernate:
+      ddl-auto: none
