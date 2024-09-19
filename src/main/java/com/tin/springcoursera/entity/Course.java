@@ -1,10 +1,10 @@
 package com.tin.springcoursera.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @Entity
 @Getter
@@ -12,10 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
+@Table(name = "course")
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
+    @CreationTimestamp
+    Timestamp createdAt;
 }

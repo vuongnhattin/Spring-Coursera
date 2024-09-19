@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query("""
             select c from Course c
-            where :search is null 
+            where :search is null
             or :search = ''
             or c.name like %:search%
             or c.description like %:search%
