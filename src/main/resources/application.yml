@@ -24,3 +24,7 @@ spring:
   web:
     resources:
       static-locations: /files/
+
+
+file:
+  upload-dir: ./files

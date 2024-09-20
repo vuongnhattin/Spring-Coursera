@@ -21,7 +21,6 @@ public class FileStorageController {
     public FileUploadResponse upload(
             @RequestParam("file") MultipartFile file) throws IOException {
         String fileUrl = fileStorageService.storeFile(file);
-        String baseUrl = "http://localhost:8080/uploads/";
-        return new FileUploadResponse(baseUrl + fileUrl);
+        return new FileUploadResponse(fileUrl);
     }
 }
