@@ -17,4 +17,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             or c.description like %:search%
             """)
     Page<Course> getCourses(@Param("search") String search, Pageable pageable);
+
+
 }

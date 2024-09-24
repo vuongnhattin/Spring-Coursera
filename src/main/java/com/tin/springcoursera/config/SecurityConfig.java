@@ -17,6 +17,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .headers(AbstractHttpConfigurer::disable) // Tắt X-Frame-Options để render file trong Angular
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
 //                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/files/**").permitAll())

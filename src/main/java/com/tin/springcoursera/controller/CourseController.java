@@ -31,12 +31,12 @@ public class CourseController {
     }
 
     @PostMapping("courses")
+    @ResponseStatus(HttpStatus.CREATED)
     public Course createCourse(@Valid @RequestBody CourseRequest courseRequest) {
         return courseService.createCourse(courseRequest);
     }
 
     @PutMapping("courses/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
     public Course updateCourse(@PathVariable Integer id, @Valid @RequestBody CourseRequest courseRequest) {
         return courseService.updateCourse(id, courseRequest);
     }
