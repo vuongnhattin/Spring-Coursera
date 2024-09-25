@@ -32,18 +32,16 @@ public class ModuleService {
     public Module createModule(CreateModuleRequest request) {
         Module module = Module.builder()
                 .name(request.getName())
-                .moduleNo(request.getModuleNo())
                 .courseId(request.getCourseId())
                 .build();
         return moduleRepository.save(module);
     }
 
     @Transactional
-    public Module updateModule(Integer moduleId, UpdateModuleRequest request) {
+    public Module updateModule(int moduleId, UpdateModuleRequest request) {
         Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
 
         module.setName(request.getName());
-        module.setModuleNo(request.getModuleNo());
 
         return moduleRepository.save(module);
     }
@@ -54,7 +52,7 @@ public class ModuleService {
         moduleRepository.delete(module);
     }
 
-    public ListResponse<ModuleMaterialResponse> getModuleMaterialsByCourseId(int courseId) {
+    public ListResponse<ModuleMaterialResponse> getModulesDetailByCourseId(int courseId) {
         List<Module> modules = moduleRepository.getModulesByCourseId(courseId);
 
         List<ModuleMaterialResponse> result = new ArrayList<>();

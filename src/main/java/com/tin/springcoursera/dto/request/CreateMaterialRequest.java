@@ -16,9 +16,7 @@ public class CreateMaterialRequest {
     @NotBlank
     private String fileType;
     @NotNull
-    private Integer courseId;
-    @NotNull
-    private Integer moduleNo;
+    private Integer moduleId;
     @NotNull
     private MultipartFile file;
 }

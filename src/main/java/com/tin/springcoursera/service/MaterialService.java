@@ -31,7 +31,7 @@ public class MaterialService {
 
     @Transactional
     public Material creteMaterial(CreateMaterialRequest request) throws IOException {
-        Module module = moduleRepository.getModuleByCourseIdAndModuleNo(request.getCourseId(), request.getModuleNo()).orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy học phần"));
+        Module module = moduleRepository.findById(request.getModuleId()).orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy học phần"));
         Material material = Material.builder()
                 .name(request.getName())
                 .fileType(request.getFileType())
@@ -66,10 +66,5 @@ public class MaterialService {
 
     public Material getMaterialById(int id) {
         return materialRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(MATERIAL_NOT_FOUND));
-    }
-
-    public ListResponse<Material> getMaterialsByCourseIdAndModuleNo(int courseId, int moduleNo) {
-        List<Material> materials = materialRepository.getMaterialsByCourseIdAndModuleNo(courseId, moduleNo);
-        return new ListResponse<>(materials);
     }
 }

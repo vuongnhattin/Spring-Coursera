@@ -48,9 +48,4 @@ public class MaterialController {
     public Material getMaterial(@PathVariable int id) {
         return materialService.getMaterialById(id);
     }
-
-    @GetMapping("courses/{courseId}/modules/{moduleNo}/materials")
-    public ListResponse<Material> getMaterialsByCourseIdAndModuleNo(@PathVariable int courseId, @PathVariable int moduleNo) {
-        return materialService.getMaterialsByCourseIdAndModuleNo(courseId, moduleNo);
-    }
 }

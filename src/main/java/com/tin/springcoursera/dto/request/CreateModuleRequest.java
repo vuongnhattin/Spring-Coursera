@@ -10,10 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateModuleRequest {
-    @NotBlank
+    @NotBlank(message = "Tên khoá học không thể rỗng")
     private String name;
-    @NotNull
-    private Integer moduleNo;
-    @NotNull
+    @NotNull(message = "courseId không thể rỗng")
     private Integer courseId;
 }

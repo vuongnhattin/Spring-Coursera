@@ -17,7 +17,5 @@ public class Module {
 
     private String name;
 
-    private int moduleNo;
-
     private Integer courseId;
 }

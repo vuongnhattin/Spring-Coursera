@@ -11,8 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("api")
@@ -42,7 +40,7 @@ public class ModuleController {
     }
 
     @GetMapping("courses/{courseId}/modules-detail")
-    public ListResponse<ModuleMaterialResponse> getModuleMaterials(@PathVariable int courseId) {
-        return moduleService.getModuleMaterialsByCourseId(courseId);
+    public ListResponse<ModuleMaterialResponse> getModulesDetail(@PathVariable int courseId) {
+        return moduleService.getModulesDetailByCourseId(courseId);
     }
 }
