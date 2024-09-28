@@ -25,6 +25,12 @@ spring:
     resources:
       static-locations: /files/
 
-
+  data:
+    mongodb:
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      database: mongo-coursera
+#      uri: mongodb://root:password@localhost:27017/coursera?authSource=admin
 file:
   upload-dir: ./files

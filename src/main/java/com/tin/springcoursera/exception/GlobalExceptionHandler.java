@@ -45,4 +45,10 @@ public class GlobalExceptionHandler {
         log.error(ex.getMessage(), ex);
         return new ErrorResponse("Internal Server Error");
     }
+
+    @ExceptionHandler(DuplicateResourceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleDuplicateResourceException(DuplicateResourceException ex) {
+        return new ErrorResponse(ex.getMessage());
+    }
 }

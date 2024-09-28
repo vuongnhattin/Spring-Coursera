@@ -43,4 +43,9 @@ public class ModuleController {
     public ListResponse<ModuleMaterialResponse> getModulesDetail(@PathVariable int courseId) {
         return moduleService.getModulesDetailByCourseId(courseId);
     }
+
+    @GetMapping("modules/{moduleId}")
+    public Module getModule(@PathVariable int moduleId) {
+        return moduleService.getModuleById(moduleId);
+    }
 }

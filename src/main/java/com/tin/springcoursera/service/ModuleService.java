@@ -6,6 +6,7 @@ import com.tin.springcoursera.dto.response.ListResponse;
 import com.tin.springcoursera.dto.response.ModuleMaterialResponse;
 import com.tin.springcoursera.entity.Material;
 import com.tin.springcoursera.entity.Module;
+import com.tin.springcoursera.exception.DuplicateResourceException;
 import com.tin.springcoursera.exception.ResourceNotFoundException;
 import com.tin.springcoursera.repository.MaterialRepository;
 import com.tin.springcoursera.repository.ModuleRepository;
@@ -22,6 +23,7 @@ public class ModuleService {
     private final ModuleRepository moduleRepository;
     private final MaterialRepository materialRepository;
 
+    public static final String MODULE_DUPLICATED = "Tên học phần này đã tồn tại";
     private final String MODULE_NOT_FOUND = "Không tìm thấy học phần";
 
     public ListResponse<Module> getModulesByCourseId(int courseId) {
@@ -30,6 +32,10 @@ public class ModuleService {
 
     @Transactional
     public Module createModule(CreateModuleRequest request) {
+        if (this.isDuplicateModule(request.getName(), request.getCourseId())) {
+            throw new DuplicateResourceException(MODULE_DUPLICATED);
+        }
+
         Module module = Module.builder()
                 .name(request.getName())
                 .courseId(request.getCourseId())
@@ -40,6 +46,10 @@ public class ModuleService {
     @Transactional
     public Module updateModule(int moduleId, UpdateModuleRequest request) {
         Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
+
+        if (this.isDuplicateModuleUpdate(request.getName(), moduleId)) {
+            throw new DuplicateResourceException(MODULE_DUPLICATED);
+        }
 
         module.setName(request.getName());
 
@@ -62,5 +72,18 @@ public class ModuleService {
         });
 
         return new ListResponse<>(result);
+    }
+
+    public Module getModuleById(int moduleId) {
+        return moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
+    }
+
+    boolean isDuplicateModule(String name, int courseId) {
+        return moduleRepository.findModuleByNameAndCourseId(name, courseId).isPresent();
+    }
+
+    boolean isDuplicateModuleUpdate(String name, int moduleId) {
+        List<Module> modules = moduleRepository.getModulesInSameCourse(moduleId);
+        return modules.stream().anyMatch(module -> module.getName().equals(name));
     }
 }

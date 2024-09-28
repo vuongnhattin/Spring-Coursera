@@ -12,6 +12,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.1
     command: ["start-dev", "--import-realm"]
+    restart: always
     environment:
       DB_VENDOR: MYSQL
       DB_ADDR: mysql
@@ -26,3 +27,15 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - mysql
+
+  mongodb:
+    image: mongo:7.0.5
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: mongo-coursera
+    volumes:
+      - ./mongo:/data/db

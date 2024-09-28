@@ -17,4 +17,16 @@ public interface ModuleRepository extends JpaRepository<Module, Integer> {
             order by m.name asc
             """)
     List<Module> getModulesByCourseId(int courseId);
+
+    Optional<Module> findModuleByNameAndCourseId(String name, int courseId);
+
+    @Query("""
+        select m from Module m
+        where m.courseId in (
+            select m.courseId from Module m
+            where m.id = ?1
+        )
+        and m.id <> ?1
+        """)
+    List<Module> getModulesInSameCourse(int moduleId);
 }

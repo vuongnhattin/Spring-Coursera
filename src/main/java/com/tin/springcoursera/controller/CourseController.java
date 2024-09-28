@@ -2,18 +2,23 @@ package com.tin.springcoursera.controller;
 
 import com.tin.springcoursera.dto.request.CourseRequest;
 import com.tin.springcoursera.dto.response.PageResponse;
+import com.tin.springcoursera.entity.ChatMessage;
 import com.tin.springcoursera.entity.Course;
+import com.tin.springcoursera.repository.ChatMessageRepository;
 import com.tin.springcoursera.service.CourseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
 public class CourseController {
     private final CourseService courseService;
+    private final ChatMessageRepository chatMessageRepository;
 
     @GetMapping("courses")
     public PageResponse<Course> getCourses(
@@ -45,5 +50,10 @@ public class CourseController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCourse(@PathVariable Integer id) {
         courseService.deleteCourse(id);
+    }
+
+    @GetMapping("test")
+    public List<ChatMessage> getChatMessages() {
+        return chatMessageRepository.findAll();
     }
 }
