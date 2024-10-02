@@ -13,17 +13,13 @@ import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.MessageHeaderAccessor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-
-import java.security.Principal;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -64,7 +60,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     Jwt jwt = jwtDecoder.decode(token);
                     JwtAuthenticationToken authentication = new JwtAuthenticationToken(jwt);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    String username = jwt.getClaimAsString("email");
+                    String username = jwt.getClaimAsString("sub");
                     accessor.setUser(new UserPrincipal(username));
                 }
                 return message;

@@ -1,6 +1,7 @@
 package com.tin.springcoursera.service;
 
 import com.tin.springcoursera.dto.request.CourseRequest;
+import com.tin.springcoursera.dto.response.CourseResponse;
 import com.tin.springcoursera.dto.response.PageResponse;
 import com.tin.springcoursera.entity.Course;
 import com.tin.springcoursera.exception.ResourceNotFoundException;
@@ -17,13 +18,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CourseService {
     private final CourseRepository courseRepository;
+    private final MemberService memberService;
 
     public static final String COURSE_NOT_FOUND = "Khoá học không tồn tại";
 
-    public PageResponse<Course> getCourses(String search, int page, int size, String order, String sortBy) {
+    public PageResponse<CourseResponse> getCourses(String search, int page, int size, String order, String sortBy, String userId) {
         Pageable paging = PageRequest.of(page, size, Sort.Direction.fromString(order), sortBy);
         Page<Course> courses = courseRepository.getCourses(search, paging);
-        return PageResponse.from(courses);
+        Page<CourseResponse> responses = courses.map(course -> new CourseResponse(course, memberService.isMember(userId, course.getId())));
+        return PageResponse.from(responses);
     }
 
     public Course getCourse(Integer id) {

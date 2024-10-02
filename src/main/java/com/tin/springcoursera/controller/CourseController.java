@@ -1,6 +1,7 @@
 package com.tin.springcoursera.controller;
 
 import com.tin.springcoursera.dto.request.CourseRequest;
+import com.tin.springcoursera.dto.response.CourseResponse;
 import com.tin.springcoursera.dto.response.PageResponse;
 import com.tin.springcoursera.entity.ChatMessage;
 import com.tin.springcoursera.entity.Course;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -20,14 +22,15 @@ public class CourseController {
     private final CourseService courseService;
     private final ChatMessageRepository chatMessageRepository;
 
-    @GetMapping("courses")
-    public PageResponse<Course> getCourses(
+    @GetMapping("me/courses")
+    public PageResponse<CourseResponse> getCourses(
             @RequestParam(defaultValue = "") String search,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int size,
             @RequestParam(defaultValue = "asc") String order,
-            @RequestParam(defaultValue = "id") String sortBy) {
-        return courseService.getCourses(search, page, size, order, sortBy);
+            @RequestParam(defaultValue = "id") String sortBy,
+            Principal principal) {
+        return courseService.getCourses(search, page, size, order, sortBy, principal.getName());
     }
 
     @GetMapping("courses/{id}")

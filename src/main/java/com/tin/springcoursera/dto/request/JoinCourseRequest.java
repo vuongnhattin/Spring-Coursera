@@ -1,6 +1,5 @@
 package com.tin.springcoursera.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -9,9 +8,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateModuleRequest {
-    @NotBlank
-    private String name;
+public class JoinCourseRequest {
     @NotNull
-    private int moduleNo;
+    private int courseId;
 }

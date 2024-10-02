@@ -35,3 +35,5 @@ build/
 mysql/
 files/
 mongo/
+Test.http
+http-client.env.json
