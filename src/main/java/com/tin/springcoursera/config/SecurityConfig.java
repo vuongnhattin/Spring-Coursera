@@ -16,8 +16,6 @@ import java.util.List;
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig {
-//    private final CustomOAuth2UserService customOAuth2UserService;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
@@ -29,7 +27,6 @@ public class SecurityConfig {
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-//                .oauth2Login(login -> login.userInfoEndpoint(endpoint -> endpoint.userService(customOAuth2UserService)))
                 .build();
     }
 

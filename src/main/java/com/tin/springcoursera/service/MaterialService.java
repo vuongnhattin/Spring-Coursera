@@ -13,13 +13,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class MaterialService {
     private final MaterialRepository materialRepository;
-    private final FileStorageService fileStorageService;
+    private final FileService fileService;
     private final ModuleService moduleService;
 
     private final String MATERIAL_NOT_FOUND = "Không tìm thấy tài liệu";
@@ -38,7 +37,7 @@ public class MaterialService {
                 .moduleId(module.getId())
                 .build();
 
-        String fileUrl = fileStorageService.storeFile(request.getFile());
+        String fileUrl = fileService.storeFile(request.getFile());
         material.setFileUrl(fileUrl);
 
         return materialRepository.save(material);
@@ -49,7 +48,7 @@ public class MaterialService {
         Material material = materialRepository.findById(materialId).orElseThrow(() -> new ResourceNotFoundException(MATERIAL_NOT_FOUND));
 
         if (request.getFile() != null) {
-            String fileUrl = fileStorageService.storeFile(request.getFile());
+            String fileUrl = fileService.storeFile(request.getFile());
             material.setFileUrl(fileUrl);
         }
 

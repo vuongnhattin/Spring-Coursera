@@ -31,6 +31,25 @@ spring:
       host: localhost
       port: 27017
       database: mongo-coursera
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
 #      uri: mongodb://root:password@localhost:27017/coursera?authSource=admin
 file:
   upload-dir: ./files
+
+#amazonProperties:
+#  endpointUrl: https://s3.us-east-2.amazonaws.com
+#  accessKey: AKIAVVZPCC77BALE3CUQ
+#  secretKey: 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
+#  bucketName: vuongnhattin-bucker
+
+aws:
+  s3:
+    bucketName: vuongnhattin-bucket
+    accessKey: AKIAVVZPCC77OTYP3ZSU
+    secretKey: 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
+#    accessKey: AKIAVVZPCC77BALE3CUQ
+#    secretKey: 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
