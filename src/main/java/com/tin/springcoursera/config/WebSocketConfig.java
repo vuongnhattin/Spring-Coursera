@@ -1,6 +1,5 @@
 package com.tin.springcoursera.config;
 
-import com.tin.springcoursera.entity.UserPrincipal;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,8 +59,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                     Jwt jwt = jwtDecoder.decode(token);
                     JwtAuthenticationToken authentication = new JwtAuthenticationToken(jwt);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-                    String username = jwt.getClaimAsString("sub");
-                    accessor.setUser(new UserPrincipal(username));
+                    String userId = jwt.getClaimAsString("sub");
+                    accessor.setUser(() -> userId);
                 }
                 return message;
             }

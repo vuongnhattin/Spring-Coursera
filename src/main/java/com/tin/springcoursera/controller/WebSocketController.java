@@ -4,6 +4,7 @@ import com.tin.springcoursera.dto.request.ChatMessageRequest;
 import com.tin.springcoursera.dto.response.ChatMessageResponse;
 import com.tin.springcoursera.entity.ChatMessage;
 import com.tin.springcoursera.entity.Member;
+import com.tin.springcoursera.entity.Users;
 import com.tin.springcoursera.service.ChatMessageService;
 import com.tin.springcoursera.service.MemberService;
 import com.tin.springcoursera.service.UserService;
@@ -37,9 +38,12 @@ public class WebSocketController {
 
         chatMessageService.createChatMessage(chatMessage);
 
+        Users sender = userService.findById(principal.getName());
+        String senderName = sender.getFirstName() + " " + sender.getLastName();
+
         ChatMessageResponse response = ChatMessageResponse.builder()
                 .chatMessage(chatMessage)
-                .senderName(userService.findByUserId(principal.getName()).getFullName())
+                .senderName(senderName)
                 .build();
 
         List<Member> members = memberService.getMembersByCourseId(request.getRoomId());

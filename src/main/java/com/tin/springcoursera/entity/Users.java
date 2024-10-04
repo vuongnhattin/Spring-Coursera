@@ -1,22 +1,25 @@
 package com.tin.springcoursera.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
+import org.keycloak.representations.idm.UserRepresentation;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
 public class Users {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String userId;
+    private String id;
     private String email;
-    private String fullName;
+    private String firstName;
+    private String lastName;
+
+    public static Users fromRepresentation(UserRepresentation user) {
+        return Users.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .build();
+    }
 }

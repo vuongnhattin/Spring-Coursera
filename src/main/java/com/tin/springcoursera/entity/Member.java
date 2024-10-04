@@ -20,4 +20,6 @@ public class Member {
     private String userId;
 
     private int courseId;
+
+    private boolean admin;
 }

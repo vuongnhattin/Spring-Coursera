@@ -5,10 +5,7 @@ import com.tin.springcoursera.entity.Member;
 import com.tin.springcoursera.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -21,5 +18,10 @@ public class MemberController {
     @PostMapping("me/courses")
     public Member joinCourse(@RequestBody @Valid JoinCourseRequest request, Principal principal) {
         return memberService.joinCourse(request, principal.getName());
+    }
+
+    @GetMapping("me/courses/{courseId}")
+    public Member getMember(Principal principal, @PathVariable int courseId) {
+        return memberService.getMemberByUserIdAndCourseId(principal.getName(), courseId);
     }
 }
