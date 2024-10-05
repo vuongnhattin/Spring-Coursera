@@ -21,6 +21,11 @@ public class MemberService {
         return member.isPresent();
     }
 
+    public boolean isAdmin(String userId, int courseId) {
+        Optional<Member> member = memberRepository.findMemberByUserIdAndCourseId(userId, courseId);
+        return member.map(Member::isAdmin).orElse(false);
+    }
+
     public Member joinCourse(JoinCourseRequest request, String userId) {
         Member member = Member.builder()
                 .userId(userId)
@@ -37,5 +42,11 @@ public class MemberService {
 
     public Member getMemberByUserIdAndCourseId(String userId, int courseId) {
         return memberRepository.findMemberByUserIdAndCourseId(userId, courseId).orElseThrow(() -> new ResourceNotFoundException(MEMBER_NOT_FOUND));
+    }
+
+    public void setMemberToAdmin(String userId, int courseId) {
+        Member member = getMemberByUserIdAndCourseId(userId, courseId);
+        member.setAdmin(true);
+        memberRepository.save(member);
     }
 }

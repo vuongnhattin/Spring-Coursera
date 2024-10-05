@@ -32,19 +32,9 @@ spring:
       port: 27017
       database: mongo-coursera
 
-#logging:
-#  level:
-#    org.springframework.security: DEBUG
-
-#      uri: mongodb://root:password@localhost:27017/coursera?authSource=admin
 file:
   upload-dir: ./files
 
-#amazonProperties:
-#  endpointUrl: https://s3.us-east-2.amazonaws.com
-#  accessKey: AKIAVVZPCC77BALE3CUQ
-#  secretKey: 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
-#  bucketName: vuongnhattin-bucker
 
 aws:
   s3:
@@ -63,3 +53,9 @@ keycloak:
   bearer-only: true
   cors: true
   principal-attribute: preferred_username
+
+#springdoc:
+#  swagger-ui:
+#    oauth:
+#      client-id: angular-client
+#      client-secret:

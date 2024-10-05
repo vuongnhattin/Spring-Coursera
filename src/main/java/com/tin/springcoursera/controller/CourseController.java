@@ -1,12 +1,14 @@
 package com.tin.springcoursera.controller;
 
 import com.tin.springcoursera.dto.request.CourseRequest;
+import com.tin.springcoursera.dto.request.JoinCourseRequest;
 import com.tin.springcoursera.dto.response.CourseResponse;
 import com.tin.springcoursera.dto.response.PageResponse;
 import com.tin.springcoursera.entity.ChatMessage;
 import com.tin.springcoursera.entity.Course;
 import com.tin.springcoursera.repository.ChatMessageRepository;
 import com.tin.springcoursera.service.CourseService;
+import com.tin.springcoursera.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ import java.util.List;
 public class CourseController {
     private final CourseService courseService;
     private final ChatMessageRepository chatMessageRepository;
+    private final MemberService memberService;
 
     @GetMapping("me/courses")
     public PageResponse<CourseResponse> getCourses(
@@ -40,8 +43,11 @@ public class CourseController {
 
     @PostMapping("courses")
     @ResponseStatus(HttpStatus.CREATED)
-    public Course createCourse(@Valid @RequestBody CourseRequest courseRequest) {
-        return courseService.createCourse(courseRequest);
+    public Course createCourse(Principal principal, @Valid @RequestBody CourseRequest courseRequest) {
+        Course course = courseService.createCourse(courseRequest);
+        memberService.joinCourse(new JoinCourseRequest(course.getId()), principal.getName());
+        memberService.setMemberToAdmin(principal.getName(), course.getId());
+        return course;
     }
 
     @PutMapping("courses/{id}")

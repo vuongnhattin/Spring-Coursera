@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/ws/**").permitAll();
+                    authorize.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))

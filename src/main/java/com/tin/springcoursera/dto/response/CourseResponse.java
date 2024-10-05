@@ -15,4 +15,5 @@ public class CourseResponse {
     @JsonUnwrapped
     private Course course;
     private boolean member;
+    private boolean admin;
 }

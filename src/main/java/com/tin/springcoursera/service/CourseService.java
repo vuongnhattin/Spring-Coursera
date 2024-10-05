@@ -25,7 +25,7 @@ public class CourseService {
     public PageResponse<CourseResponse> getCourses(String search, int page, int size, String order, String sortBy, String userId) {
         Pageable paging = PageRequest.of(page, size, Sort.Direction.fromString(order), sortBy);
         Page<Course> courses = courseRepository.getCourses(search, paging);
-        Page<CourseResponse> responses = courses.map(course -> new CourseResponse(course, memberService.isMember(userId, course.getId())));
+        Page<CourseResponse> responses = courses.map(course -> new CourseResponse(course, memberService.isMember(userId, course.getId()), memberService.isAdmin(userId, course.getId())));
         return PageResponse.from(responses);
     }
 
