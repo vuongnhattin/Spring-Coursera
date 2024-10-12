@@ -11,6 +11,7 @@ import org.keycloak.representations.idm.UserRepresentation;
 public class Users {
     private String id;
     private String email;
+    private String username;
     private String firstName;
     private String lastName;
 
@@ -18,6 +19,7 @@ public class Users {
         return Users.builder()
                 .id(user.getId())
                 .email(user.getEmail())
+                .username(user.getUsername())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .build();

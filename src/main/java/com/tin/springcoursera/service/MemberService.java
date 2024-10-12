@@ -1,6 +1,7 @@
 package com.tin.springcoursera.service;
 
 import com.tin.springcoursera.dto.request.JoinCourseRequest;
+import com.tin.springcoursera.dto.response.UserCourseResponse;
 import com.tin.springcoursera.entity.Member;
 import com.tin.springcoursera.exception.ResourceNotFoundException;
 import com.tin.springcoursera.repository.MemberRepository;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class MemberService {
     private static final String MEMBER_NOT_FOUND = "Thành viên không tồn tại";
     private final MemberRepository memberRepository;
+    private final UserService userService;
 
     public boolean isMember(String userId, int courseId) {
         Optional<Member> member = memberRepository.findMemberByUserIdAndCourseId(userId, courseId);
@@ -48,5 +50,13 @@ public class MemberService {
         Member member = getMemberByUserIdAndCourseId(userId, courseId);
         member.setAdmin(true);
         memberRepository.save(member);
+    }
+
+    public List<UserCourseResponse> getUserCourse(int courseId) {
+        List<Member> members = getMembersByCourseId(courseId);
+        return members.stream().map(member -> UserCourseResponse.builder()
+                .user(userService.findById(member.getUserId()))
+                .admin(member.isAdmin())
+                .build()).toList();
     }
 }

@@ -3,10 +3,10 @@ package com.tin.springcoursera.controller;
 import com.tin.springcoursera.dto.request.CourseRequest;
 import com.tin.springcoursera.dto.request.JoinCourseRequest;
 import com.tin.springcoursera.dto.response.CourseResponse;
+import com.tin.springcoursera.dto.response.ListResponse;
 import com.tin.springcoursera.dto.response.PageResponse;
-import com.tin.springcoursera.entity.ChatMessage;
+import com.tin.springcoursera.dto.response.UserCourseResponse;
 import com.tin.springcoursera.entity.Course;
-import com.tin.springcoursera.repository.ChatMessageRepository;
 import com.tin.springcoursera.service.CourseService;
 import com.tin.springcoursera.service.MemberService;
 import jakarta.validation.Valid;
@@ -15,14 +15,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
 public class CourseController {
     private final CourseService courseService;
-    private final ChatMessageRepository chatMessageRepository;
     private final MemberService memberService;
 
     @GetMapping("me/courses")
@@ -61,8 +59,8 @@ public class CourseController {
         courseService.deleteCourse(id);
     }
 
-    @GetMapping("test")
-    public List<ChatMessage> getChatMessages() {
-        return chatMessageRepository.findAll();
+    @GetMapping("courses/{id}/members")
+    public ListResponse<UserCourseResponse> getMembers(@PathVariable int id) {
+        return new ListResponse<>(memberService.getUserCourse(id));
     }
 }

@@ -20,8 +20,9 @@ public class MemberController {
         return memberService.joinCourse(request, principal.getName());
     }
 
-    @GetMapping("me/courses/{courseId}")
+    @GetMapping("me/members/{courseId}")
     public Member getMember(Principal principal, @PathVariable int courseId) {
         return memberService.getMemberByUserIdAndCourseId(principal.getName(), courseId);
     }
+
 }

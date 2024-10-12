@@ -17,7 +17,6 @@ import java.io.IOException;
 @AllArgsConstructor
 public class MaterialController {
     private final MaterialService materialService;
-//    private final FileStorageService fileStorageService;
 
     @GetMapping("modules/{moduleId}/materials")
     public ListResponse<Material> getMaterials(@PathVariable int moduleId) {
