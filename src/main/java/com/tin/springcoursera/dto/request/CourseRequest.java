@@ -1,8 +1,6 @@
 package com.tin.springcoursera.dto.request;
 
-import com.tin.springcoursera.entity.Course;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
@@ -15,4 +13,5 @@ public class CourseRequest {
     private String name;
     @NotBlank(message = "Mô tả khoá học không thể rỗng")
     private String description;
+    private String introduction;
 }

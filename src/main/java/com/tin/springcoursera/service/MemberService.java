@@ -59,4 +59,11 @@ public class MemberService {
                 .admin(member.isAdmin())
                 .build()).toList();
     }
+
+    public Member changeRole(String userId, int courseId) {
+        Member member = getMemberByUserIdAndCourseId(userId, courseId);
+        member.setAdmin(!member.isAdmin());
+        memberRepository.save(member);
+        return member;
+    }
 }

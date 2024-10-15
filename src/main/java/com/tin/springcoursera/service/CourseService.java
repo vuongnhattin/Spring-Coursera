@@ -50,6 +50,7 @@ public class CourseService {
         Course course = courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(COURSE_NOT_FOUND));
         course.setName(request.getName());
         course.setDescription(request.getDescription());
+        course.setIntroduction(request.getIntroduction());
 
         return courseRepository.save(course);
     }

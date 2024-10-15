@@ -19,6 +19,7 @@ public class Course {
     private Integer id;
     private String name;
     private String description;
+    private String introduction;
     @CreationTimestamp
     private Timestamp createdAt;
 }

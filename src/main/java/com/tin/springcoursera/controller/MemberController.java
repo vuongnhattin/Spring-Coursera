@@ -25,4 +25,8 @@ public class MemberController {
         return memberService.getMemberByUserIdAndCourseId(principal.getName(), courseId);
     }
 
+    @PutMapping("members/role")
+    public Member updateRole(@RequestParam int courseId, @RequestParam String userId, Principal principal) {
+        return memberService.changeRole(userId, courseId);
+    }
 }
