@@ -12,6 +12,7 @@ import com.tin.springcoursera.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -35,6 +36,7 @@ public class CourseController {
     }
 
     @GetMapping("courses/{id}")
+    @PreAuthorize("@auth.isMemberOfCourse(#id)")
     public Course getCourse(@PathVariable Integer id) {
         return courseService.getCourse(id);
     }
@@ -49,17 +51,20 @@ public class CourseController {
     }
 
     @PutMapping("courses/{id}")
+    @PreAuthorize("@auth.isAdminOfCourse(#id)")
     public Course updateCourse(@PathVariable Integer id, @Valid @RequestBody CourseRequest courseRequest) {
         return courseService.updateCourse(id, courseRequest);
     }
 
     @DeleteMapping("courses/{id}")
+    @PreAuthorize("@auth.isAdminOfCourse(#id)")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCourse(@PathVariable Integer id) {
         courseService.deleteCourse(id);
     }
 
     @GetMapping("courses/{id}/members")
+    @PreAuthorize("@auth.isAdminOfCourse(#id)")
     public ListResponse<UserCourseResponse> getMembers(@PathVariable int id) {
         return new ListResponse<>(memberService.getUserCourse(id));
     }

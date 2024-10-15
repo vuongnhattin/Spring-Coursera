@@ -20,10 +20,6 @@ public class ChatMessageService {
         return chatMessageRepository.save(chatMessage);
     }
 
-    public List<ChatMessage> getAllChatMessages() {
-        return chatMessageRepository.findAll();
-    }
-
     public List<ChatMessageResponse> getChatMessagesByRoomId(int roomId) {
         List<ChatMessage> messages = chatMessageRepository.findChatMessagesByRoomId(roomId);
         List<ChatMessageResponse> responses = new ArrayList<>();

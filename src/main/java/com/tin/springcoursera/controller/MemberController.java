@@ -5,6 +5,7 @@ import com.tin.springcoursera.entity.Member;
 import com.tin.springcoursera.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -26,7 +27,8 @@ public class MemberController {
     }
 
     @PutMapping("members/role")
-    public Member updateRole(@RequestParam int courseId, @RequestParam String userId, Principal principal) {
+    @PreAuthorize("@auth.isAdminOfCourse(#courseId)")
+    public Member updateRole(@RequestParam int courseId, @RequestParam String userId) {
         return memberService.changeRole(userId, courseId);
     }
 }
