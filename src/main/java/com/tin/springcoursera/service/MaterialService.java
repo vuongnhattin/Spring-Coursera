@@ -19,7 +19,6 @@ import java.io.IOException;
 public class MaterialService {
     private final MaterialRepository materialRepository;
     private final FileService fileService;
-    private final ModuleService moduleService;
 
     private final String MATERIAL_NOT_FOUND = "Không tìm thấy tài liệu";
     private final ModuleRepository moduleRepository;

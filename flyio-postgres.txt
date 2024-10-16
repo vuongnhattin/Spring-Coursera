@@ -1,0 +1,8 @@
+Postgres cluster vuongnhattin-keycloak-db created
+  Username:    postgres
+  Password:    2ybLcnsetfyr8mF
+  Hostname:    vuongnhattin-keycloak-db.internal
+  Flycast:     fdaa:a:8d51:0:1::3
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:2ybLcnsetfyr8mF@vuongnhattin-keycloak-db.flycast:5432
