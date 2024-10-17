@@ -21,14 +21,16 @@ Comming soon...
 - Dùng api từ Amazon S3 Bucket để lưu trữ, upload file, video lên Cloud.
 - Dùng Docker Compose để tạo môi trường server database, keycloak trên môi trường local.
 - Swagger dùng để tạo Api Document.
-### 3. Chức năng của các api
+### 3. Một số chức năng đặc biệt của các api
 - Một số api có chức năng phân trang, sắp xếp, tìm kiếm.
 - Tất cả api đều có chức năng xác thực và phân quyền (chẳng hạn chỉ quản trị viên của khoá học mới được chỉnh sửa khoá học)
 - Các api thực hiện POST request đều có validate body từ form.
 - Dùng AOP (Aspect Oriented Programming) để bắt các exception từ các api.
 - Các api sử dụng DTO (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
+- Dùng presigned url (url tạm thời) của Amazon S3 để phân quyền cho url của các file đã upload.
 ## Deploy
 - Sử dụng MongoDB Atlas cho MongoDB server.
 - Host MySQL server trên aiven.io
 - Host Keycloak server trên fly.io
 - Deploy bằng Dockerfile trên render.com
+- Link Swagger UI của server đã deploy: https://spring-coursera.onrender.com/swagger-ui/index.html#/
