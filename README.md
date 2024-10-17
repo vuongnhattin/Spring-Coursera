@@ -27,3 +27,8 @@ Comming soon...
 - Các api thực hiện POST request đều có validate body từ form.
 - Dùng AOP (Aspect Oriented Programming) để bắt các exception từ các api.
 - Các api sử dụng DTO (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
+## Deploy
+- Sử dụng MongoDB Atlas cho MongoDB server.
+- Host MySQL server trên aiven.io
+- Host Keycloak server trên fly.io
+- Deploy bằng Dockerfile trên render.com
