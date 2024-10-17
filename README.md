@@ -12,7 +12,7 @@ Comming soon...
 - Quản trị viên của một khoá học có thể tìm kiếm và thêm user khác làm quản trị viên cho khoá học đó, có thể chỉnh sửa thông tin khoá học hoặc xoá khoá học.
 - Người dùng có thể xem video, đọc file pdf và download về máy. Quản trị viên có thể upload, xoá video hoặc file pdf cho một học phần.
 - Những người dùng trong một khoá học có thể chat nhóm với nhau theo thời gian thực
-- Tạo document cho phía frontend đọc.
+- Tạo Swagger api document cung cấp cho phía Front End.
 ### 2. Công nghệ
 - MongoDB để lưu trữ tin nhắn chat giữa các user và MySQL cho phần còn lại.
 - Flyway dùng để migrate, tạo version control cho MySQL.
