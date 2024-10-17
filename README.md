@@ -1,4 +1,4 @@
-# Coursera Cloning Project - Backend
+# Coursera Clone Project - Backend
 ## Giới thiệu 
 Dự án fullstack tạo nên một website học tập tương tự như Coursera. Project dùng Java Spring Boot cho backend và Angular cho frontend (repository của Angular: https://github.com/vuongnhattin/Angular-Coursera). 
 ## Chức năng
