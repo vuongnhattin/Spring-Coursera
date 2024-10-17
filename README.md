@@ -6,7 +6,7 @@ Dự án fullstack tạo nên một website học tập tương tự như Course
 Comming soon...
 ### 2. Sơ lược về chức năng.
 - Đăng kí (có xác thực email), đăng nhập bằng tài khoản Google hoặc Github có sẵn.
-- Người dùng có thể thay đổi thông tin tài khoản.
+- Người dùng có thể thay đổi thông tin tài khoản, lấy lại mật khẩu thông qua email.
 - Các chức năng xem, thêm, sửa, xoá dành cho khoá học (chỉ các quản trị viên của khoá học mới có quyền xoá, sửa).
 - Tìm kiếm khoá học dựa theo tên hoặc description.
 - Quản trị viên của một khoá học có thể tìm kiếm và thêm user khác làm quản trị viên cho khoá học đó, có thể chỉnh sửa thông tin khoá học hoặc xoá khoá học.
