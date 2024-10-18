@@ -1,6 +1,6 @@
 # Coursera Clone Project - Backend
 ## Giới thiệu 
-Dự án fullstack tạo nên một website học tập tương tự như Coursera. Project dùng Java Spring Boot cho backend và Angular cho frontend (repository của Angular: https://github.com/vuongnhattin/Angular-Coursera). 
+Dự án fullstack tạo nên một **website học tập** tương tự như Coursera. Project dùng Java Spring Boot cho backend và Angular cho frontend (repository của Angular: https://github.com/vuongnhattin/Angular-Coursera). 
 ## Chức năng
 ### 1. Video demo
 Comming soon...
@@ -12,7 +12,7 @@ Comming soon...
 - Quản trị viên của một khoá học có thể tìm kiếm và **thêm user khác làm quản trị** viên cho khoá học đó, có thể chỉnh sửa thông tin hoặc xoá khoá học.
 - Người dùng có thể **xem video, đọc file pdf** và **download** về máy. Quản trị viên có thể **upload**, **xoá** video hoặc file pdf cho một học phần.
 - Những người dùng trong một khoá học có thể **chat nhóm** với nhau theo **thời gian thực**.
-- Tạo **Swagger** api document cung cấp cho phía Front End.
+- Tạo **Swagger Api Document** cung cấp cho phía Front End.
 ### 2. Công nghệ
 - **MongoDB** để lưu trữ tin nhắn chat giữa các user và **MySQL** cho phần còn lại.
 - **Flyway** dùng để **migrate**, tạo **version control** cho MySQL.
@@ -25,12 +25,13 @@ Comming soon...
 - Một số api có chức năng **phân trang, sắp xếp, tìm kiếm**.
 - Tất cả api đều có chức năng **xác thực** và **phân quyền** (chẳng hạn chỉ quản trị viên của khoá học mới được chỉnh sửa khoá học)
 - Các api thực hiện POST request đều có **validate body** từ form.
-- Dùng AOP (Aspect Oriented Programming) để bắt các exception từ các api.
-- Các api sử dụng DTO (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
-- Dùng presigned url (url tạm thời) của Amazon S3 để phân quyền cho url của các file đã upload.
+- Dùng AOP (Aspect Oriented Programming) để bắt các **exception** từ các api.
+- Các api sử dụng **DTO** (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
+- Dùng **Presigned Url** (url tạm thời) của Amazon S3 để **phân quyền** cho url của các file đã upload.
 ## Deploy
 - Sử dụng **MongoDB Atlas** cho MongoDB server.
-- **Host** MySQL server trên **aiven.io**
-- **Host** Keycloak server trên **fly.io**
-- **Deploy** bằng Dockerfile trên **render.com**
-- Link **Swagger UI** của server đã deploy: https://spring-coursera.onrender.com/swagger-ui/index.html#/
+- **Host** MySQL server trên [aiven.io](https://aiven.io)
+- **Host** Keycloak server trên [fly.io](https://fly.io)
+- **Deploy** bằng Dockerfile trên [render.com](https://render.com)
+- Link **Swagger UI** của server đã deploy: [https://spring-coursera.onrender.com/swagger-ui/index.html#/](https://spring-coursera.onrender.com/swagger-ui/index.html#/
+)
