@@ -29,9 +29,5 @@ Comming soon...
 - Các api sử dụng **DTO** (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
 - Dùng **Presigned Url** (url tạm thời) của Amazon S3 để **phân quyền** cho url của các file đã upload.
 ## Deploy
-- Sử dụng **MongoDB Atlas** cho MongoDB server.
-- **Host** MySQL server trên [aiven.io](https://aiven.io)
-- **Host** Keycloak server trên [fly.io](https://fly.io)
-- **Deploy** bằng Dockerfile trên [render.com](https://render.com)
 - Link **Swagger UI** của server đã deploy: [https://spring-coursera.onrender.com/swagger-ui/index.html#/](https://spring-coursera.onrender.com/swagger-ui/index.html#/
-)
+) (Keycloak và Angular tạm thời chưa deploy xong)
