@@ -1,3 +1,4 @@
 Deploy Spring Boot on Render Free Hosting: https://www.youtube.com/watch?v=Nr4u-AfIElg
 Hosting a Keycloak server on Fly.io in 10 minutes: https://medium.com/@stefannovak96/hosting-a-keycloak-server-and-postgres-database-on-fly-69caf2da8a09
 Deploy Spring Boot MySQL on Render: https://www.youtube.com/watch?v=UZ8Q-X3AGHA
+Deploy Angular: https://www.youtube.com/watch?v=S4VqVCdAyAo

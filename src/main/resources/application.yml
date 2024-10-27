@@ -2,12 +2,12 @@ spring:
   application:
     name: SpringCoursera
   datasource:
-    url: jdbc:mysql://localhost:3307/coursera
-    username: root
-    password: 123
-#    url: jdbc:mysql://coursera-coursera.b.aivencloud.com:24525/coursera
-#    username: avnadmin
-#    password: AVNS_R1BM6EBrJDb5bdoI9mG
+#    url: jdbc:mysql://localhost:3307/coursera
+#    username: root
+#    password: 123
+    url: jdbc:mysql://coursera-coursera.b.aivencloud.com:24525/coursera
+    username: avnadmin
+    password: AVNS_R1BM6EBrJDb5bdoI9mG
 
   jpa:
     hibernate:
@@ -21,11 +21,11 @@ spring:
             issuer-uri: http://localhost:8181/realms/coursera-realm
   data:
     mongodb:
-#      uri: mongodb+srv://tin:tin@coursera.8qcfm.mongodb.net/mongo-coursera?retryWrites=true&w=majority&appName=Coursera
-      authentication-database: admin
-      host: localhost
-      port: 27017
-      database: mongo-coursera
+      uri: mongodb+srv://tin:tin@coursera.8qcfm.mongodb.net/mongo-coursera?retryWrites=true&w=majority&appName=Coursera
+#      authentication-database: admin
+#      host: localhost
+#      port: 27017
+#      database: mongo-coursera
 
   servlet:
     multipart:
