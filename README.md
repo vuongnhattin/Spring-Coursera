@@ -2,10 +2,10 @@
 ## Giới thiệu 
 Dự án fullstack tạo nên một **website học tập** tương tự như Coursera. Project dùng Java Spring Boot cho backend và Angular cho frontend (repository của Angular: https://github.com/vuongnhattin/Angular-Coursera). 
 ## Chức năng
-### 1. Video demo
-Comming soon...
+### 1. Link website
+[https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io/](https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io/)
 ### 2. Sơ lược về chức năng.
-- Đăng kí (có xác thực email), **đăng nhập bằng tài khoản Google hoặc Github** có sẵn.
+- Đăng kí, đăng nhập.
 - Người dùng có thể thay đổi thông tin tài khoản, lấy lại mật khẩu thông qua email.
 - Các chức năng xem, thêm, sửa, xoá dành cho khoá học (chỉ các quản trị viên của khoá học mới có quyền xoá, sửa).
 - **Tìm kiếm** khoá học dựa theo tên hoặc description.
@@ -17,9 +17,8 @@ Comming soon...
 - **MongoDB** để lưu trữ tin nhắn chat giữa các user và **MySQL** cho phần còn lại.
 - **Flyway** dùng để **migrate**, tạo **version control** cho MySQL.
 - **WebSocket** dùng để tạo hiển thị tin nhắn thời gian thực giữa các user.
-- **Keycloak** dùng để quản lý tài khoản user, thực hiện các chức năng đăng nhập, đăng kí, xác thực bằng email, cho phép người dùng đăng nhập bằng Github hoặc Google sử dụng **OAuth2**,...
 - Dùng api từ **Amazon S3 Bucket** để **lưu trữ, upload file**, video lên Cloud.
-- Dùng **Docker Compose** để tạo môi trường server database, keycloak trên môi trường local.
+- Dùng **Docker Compose** để tạo môi trường database.
 - **Swagger** dùng để tạo Api Document.
 ### 3. Một số chức năng đặc biệt của các api
 - Một số api có chức năng **phân trang, sắp xếp, tìm kiếm**.
@@ -29,5 +28,5 @@ Comming soon...
 - Các api sử dụng **DTO** (Data Transfer Object) để thêm hoặc bớt các trường trả về, giúp phù hợp với Front End.
 - Dùng **Presigned Url** (url tạm thời) của Amazon S3 để **phân quyền** cho url của các file đã upload.
 ## Deploy
-- Link **Swagger UI** của server đã deploy: [https://spring-coursera.onrender.com/swagger-ui/index.html#/](https://spring-coursera.onrender.com/swagger-ui/index.html#/
-) (Keycloak và Angular tạm thời chưa deploy xong)
+- Database MySQL được host trên [https://fly.io](https://fly.io).
+- Backend và Frontend được deploy lên **Azure**.
