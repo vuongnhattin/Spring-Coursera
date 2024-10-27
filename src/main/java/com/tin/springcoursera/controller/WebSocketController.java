@@ -9,8 +9,7 @@ import com.tin.springcoursera.service.ChatMessageService;
 import com.tin.springcoursera.service.MemberService;
 import com.tin.springcoursera.service.UserService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -21,8 +20,8 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class WebSocketController {
-    private static final Logger log = LoggerFactory.getLogger(WebSocketController.class);
     private SimpMessagingTemplate messagingTemplate;
     private final MemberService memberService;
     private final ChatMessageService chatMessageService;
@@ -30,6 +29,7 @@ public class WebSocketController {
 
     @MessageMapping("/send")
     public void sendMessage(@Payload ChatMessageRequest request, Principal principal) {
+        log.info("Send message: {}", request.toString());
         ChatMessage chatMessage = ChatMessage.builder()
                 .sender(principal.getName())
                 .roomId(request.getRoomId())
@@ -38,7 +38,7 @@ public class WebSocketController {
 
         chatMessageService.createChatMessage(chatMessage);
 
-        Users sender = userService.findById(principal.getName());
+        Users sender = userService.findByUsername(principal.getName());
         String senderName = sender.getFirstName() + " " + sender.getLastName();
 
         ChatMessageResponse response = ChatMessageResponse.builder()
@@ -48,7 +48,7 @@ public class WebSocketController {
 
         List<Member> members = memberService.getMembersByCourseId(request.getRoomId());
         for (Member member : members) {
-            messagingTemplate.convertAndSendToUser(member.getUserId(), "/queue/messages", response);
+            messagingTemplate.convertAndSendToUser(member.getUsername(), "/queue/messages", response);
         }
     }
 }

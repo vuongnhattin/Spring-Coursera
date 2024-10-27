@@ -4,7 +4,7 @@ import com.tin.springcoursera.dto.request.CourseRequest;
 import com.tin.springcoursera.dto.response.CourseResponse;
 import com.tin.springcoursera.dto.response.PageResponse;
 import com.tin.springcoursera.entity.Course;
-import com.tin.springcoursera.exception.ResourceNotFoundException;
+import com.tin.springcoursera.exception.AppException;
 import com.tin.springcoursera.repository.CourseRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class CourseService {
     }
 
     public Course getCourse(Integer id) {
-        return courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(COURSE_NOT_FOUND));
+        return courseRepository.findById(id).orElseThrow(() -> new AppException(404, COURSE_NOT_FOUND));
     }
 
     @Transactional
@@ -45,9 +45,9 @@ public class CourseService {
     @Transactional
     public Course updateCourse(Integer id, CourseRequest request) {
         if (!courseRepository.existsById(id)) {
-            throw new ResourceNotFoundException(COURSE_NOT_FOUND);
+            throw new AppException(404, COURSE_NOT_FOUND);
         }
-        Course course = courseRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(COURSE_NOT_FOUND));
+        Course course = courseRepository.findById(id).orElseThrow(() -> new AppException(404, COURSE_NOT_FOUND));
         course.setName(request.getName());
         course.setDescription(request.getDescription());
         course.setIntroduction(request.getIntroduction());

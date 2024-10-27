@@ -6,7 +6,6 @@ import com.tin.springcoursera.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -17,13 +16,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("me")
-    public Users getMe(Authentication authentication) {
-        return userService.findById(authentication.getName());
+    public Users getMe() {
+        return userService.getCurrentUser();
     }
 
     @PutMapping("me")
-    public Users updateMe(Authentication authentication, @RequestBody @Valid UpdateUserRequest request) {
-        String id = authentication.getName();
-        return  userService.updateUser(id, request);
+    public Users updateMe(@RequestBody @Valid UpdateUserRequest request) {
+        Users currentUser = userService.getCurrentUser();
+        return  userService.updateUser(currentUser.getId(), request);
     }
 }

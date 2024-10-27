@@ -2,12 +2,12 @@ spring:
   application:
     name: SpringCoursera
   datasource:
-#    url: jdbc:mysql://localhost:3307/coursera
-#    username: root
-#    password: 123
-    url: jdbc:mysql://coursera-coursera.b.aivencloud.com:24525/coursera
-    username: avnadmin
-    password: AVNS_R1BM6EBrJDb5bdoI9mG
+    url: jdbc:mysql://localhost:3307/coursera
+    username: root
+    password: 123
+#    url: jdbc:mysql://coursera-coursera.b.aivencloud.com:24525/coursera
+#    username: avnadmin
+#    password: AVNS_R1BM6EBrJDb5bdoI9mG
 
   jpa:
     hibernate:
@@ -17,15 +17,20 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8181/realms/coursera-realm
-
+#          issuer-uri: https://spring-coursera.fly.dev/realms/coursera-realm
+            issuer-uri: http://localhost:8181/realms/coursera-realm
   data:
     mongodb:
-      uri: mongodb+srv://tin:tin@coursera.8qcfm.mongodb.net/mongo-coursera?retryWrites=true&w=majority&appName=Coursera
-#      authentication-database: admin
-#      host: localhost
-#      port: 27017
-#      database: mongo-coursera
+#      uri: mongodb+srv://tin:tin@coursera.8qcfm.mongodb.net/mongo-coursera?retryWrites=true&w=majority&appName=Coursera
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      database: mongo-coursera
+
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
 
 aws:
   s3:
@@ -42,3 +47,8 @@ keycloak:
   bearer-only: true
   cors: true
   principal-attribute: preferred_username
+
+security:
+  jwt:
+    secret-key: ZCQl6X6kQnI8PElWxA547cvvvzZSeRhQAzDe7ZYpOI0=
+    expiration-time: 3600000

@@ -24,7 +24,7 @@ public class ChatMessageService {
         List<ChatMessage> messages = chatMessageRepository.findChatMessagesByRoomId(roomId);
         List<ChatMessageResponse> responses = new ArrayList<>();
         for (ChatMessage message : messages) {
-            Users sender = userService.findById(message.getSender());
+            Users sender = userService.findByUsername(message.getSender());
             String senderName = sender.getFirstName() + " " + sender.getLastName();
             ChatMessageResponse build = ChatMessageResponse.builder()
                     .chatMessage(message)

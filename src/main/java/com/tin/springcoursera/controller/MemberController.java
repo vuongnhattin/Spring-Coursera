@@ -23,12 +23,12 @@ public class MemberController {
 
     @GetMapping("me/members/{courseId}")
     public Member getMember(Principal principal, @PathVariable int courseId) {
-        return memberService.getMemberByUserIdAndCourseId(principal.getName(), courseId);
+        return memberService.getMemberByUsernameAndCourseId(principal.getName(), courseId);
     }
 
     @PutMapping("members/role")
     @PreAuthorize("@auth.isAdminOfCourse(#courseId)")
-    public Member updateRole(@RequestParam int courseId, @RequestParam String userId) {
-        return memberService.changeRole(userId, courseId);
+    public Member updateRole(@RequestParam int courseId, @RequestParam String username) {
+        return memberService.changeRole(username, courseId);
     }
 }

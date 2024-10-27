@@ -6,8 +6,8 @@ import com.tin.springcoursera.dto.response.ListResponse;
 import com.tin.springcoursera.dto.response.ModuleMaterialResponse;
 import com.tin.springcoursera.entity.Material;
 import com.tin.springcoursera.entity.Module;
+import com.tin.springcoursera.exception.AppException;
 import com.tin.springcoursera.exception.DuplicateResourceException;
-import com.tin.springcoursera.exception.ResourceNotFoundException;
 import com.tin.springcoursera.repository.MaterialRepository;
 import com.tin.springcoursera.repository.ModuleRepository;
 import jakarta.transaction.Transactional;
@@ -45,7 +45,7 @@ public class ModuleService {
 
     @Transactional
     public Module updateModule(int moduleId, UpdateModuleRequest request) {
-        Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
+        Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new AppException(404, MODULE_NOT_FOUND));
 
         if (this.isDuplicateModuleUpdate(request.getName(), moduleId)) {
             throw new DuplicateResourceException(MODULE_DUPLICATED);
@@ -58,7 +58,7 @@ public class ModuleService {
 
     @Transactional
     public void deleteModule(int moduleId) {
-        Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
+        Module module = moduleRepository.findById(moduleId).orElseThrow(() -> new AppException(404, MODULE_NOT_FOUND));
         moduleRepository.delete(module);
     }
 
@@ -75,7 +75,7 @@ public class ModuleService {
     }
 
     public Module getModuleById(int moduleId) {
-        return moduleRepository.findById(moduleId).orElseThrow(() -> new ResourceNotFoundException(MODULE_NOT_FOUND));
+        return moduleRepository.findById(moduleId).orElseThrow(() -> new AppException(404, MODULE_NOT_FOUND));
     }
 
     boolean isDuplicateModule(String name, int courseId) {

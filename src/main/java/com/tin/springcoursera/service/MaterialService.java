@@ -5,7 +5,7 @@ import com.tin.springcoursera.dto.request.UpdateMaterialRequest;
 import com.tin.springcoursera.dto.response.ListResponse;
 import com.tin.springcoursera.entity.Material;
 import com.tin.springcoursera.entity.Module;
-import com.tin.springcoursera.exception.ResourceNotFoundException;
+import com.tin.springcoursera.exception.AppException;
 import com.tin.springcoursera.repository.MaterialRepository;
 import com.tin.springcoursera.repository.ModuleRepository;
 import jakarta.transaction.Transactional;
@@ -29,7 +29,7 @@ public class MaterialService {
 
     @Transactional
     public Material creteMaterial(CreateMaterialRequest request) throws IOException {
-        Module module = moduleRepository.findById(request.getModuleId()).orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy học phần"));
+        Module module = moduleRepository.findById(request.getModuleId()).orElseThrow(() -> new AppException(404, "Không tìm thấy học phần"));
         Material material = Material.builder()
                 .name(request.getName())
                 .fileType(request.getFileType())
@@ -44,7 +44,7 @@ public class MaterialService {
 
     @Transactional
     public Material updateMaterial(Integer materialId, UpdateMaterialRequest request) throws IOException {
-        Material material = materialRepository.findById(materialId).orElseThrow(() -> new ResourceNotFoundException(MATERIAL_NOT_FOUND));
+        Material material = materialRepository.findById(materialId).orElseThrow(() -> new AppException(404, MATERIAL_NOT_FOUND));
 
         if (request.getFile() != null) {
             String fileUrl = fileService.storeFile(request.getFile());
@@ -63,6 +63,6 @@ public class MaterialService {
     }
 
     public Material getMaterialById(int id) {
-        return materialRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(MATERIAL_NOT_FOUND));
+        return materialRepository.findById(id).orElseThrow(() -> new AppException(404, MATERIAL_NOT_FOUND));
     }
 }

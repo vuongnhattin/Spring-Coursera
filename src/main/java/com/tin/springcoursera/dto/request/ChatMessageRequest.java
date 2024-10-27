@@ -4,9 +4,9 @@ import lombok.*;
 
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ChatMessageRequest {
     private int roomId;
     private String content;

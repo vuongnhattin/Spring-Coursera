@@ -13,11 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class PageResponse<T> {
-    List<T> data;
-    int page;
-    int pageSize;
-    int totalPages;
-    long totalElements;
+    private List<T> data;
+    private int page;
+    private int pageSize;
+    private int totalPages;
+    private long totalElements;
 
     public static <T> PageResponse<T> from(Page<T> page) {
         return new PageResponse<>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalPages(), page.getTotalElements());

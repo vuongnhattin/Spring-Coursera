@@ -1,0 +1,1 @@
+alter table member rename column user_id to username
