@@ -6,7 +6,6 @@ Dự án fullstack tạo nên một **website học tập** tương tự như Co
 [https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io/](https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io/)
 ### 2. Sơ lược về chức năng.
 - Đăng kí, đăng nhập.
-- Người dùng có thể thay đổi thông tin tài khoản, lấy lại mật khẩu thông qua email.
 - Các chức năng xem, thêm, sửa, xoá dành cho khoá học (chỉ các quản trị viên của khoá học mới có quyền xoá, sửa).
 - **Tìm kiếm** khoá học dựa theo tên hoặc description.
 - Quản trị viên của một khoá học có thể tìm kiếm và **thêm user khác làm quản trị** viên cho khoá học đó, có thể chỉnh sửa thông tin hoặc xoá khoá học.
