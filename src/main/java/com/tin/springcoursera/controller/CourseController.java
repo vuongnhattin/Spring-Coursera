@@ -69,3 +69,4 @@ public class CourseController {
         return new ListResponse<>(memberService.getUserCourse(id));
     }
 }
+

@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: ${MYSQL_URL_PROD}
+    username: ${MYSQL_USERNAME_PROD}
+    password: ${MYSQL_PASSWORD_PROD}
+
+  data:
+    mongodb:
+      uri: ${MONGO_URI_PROD}

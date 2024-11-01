@@ -47,10 +47,15 @@ public class MemberService {
         return memberRepository.findMemberByUsernameAndCourseId(username, courseId).orElseThrow(() -> new AppException(404, MEMBER_NOT_FOUND));
     }
 
-    public void setMemberToAdmin(String userId, int courseId) {
-        Member member = getMemberByUsernameAndCourseId(userId, courseId);
+    public void setMemberToAdmin(String username, int courseId) {
+        Member member = getMemberByUsernameAndCourseId(username, courseId);
         member.setAdmin(true);
         memberRepository.save(member);
+    }
+
+    public void deleteMember(String username, int courseId) {
+        Member member = getMemberByUsernameAndCourseId(username, courseId);
+        memberRepository.delete(member);
     }
 
     public List<UserCourseResponse> getUserCourse(int courseId) {

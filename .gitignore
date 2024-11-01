@@ -37,3 +37,4 @@ files/
 mongo/
 Test.http
 http-client.env.json
+.env

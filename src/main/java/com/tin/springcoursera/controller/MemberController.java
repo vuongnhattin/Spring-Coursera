@@ -31,4 +31,10 @@ public class MemberController {
     public Member updateRole(@RequestParam int courseId, @RequestParam String username) {
         return memberService.changeRole(username, courseId);
     }
+
+    @DeleteMapping("members")
+    @PreAuthorize("@auth.isAdminOfCourse(#courseId)")
+    public void deleteMember(@RequestParam int courseId, @RequestParam String username) {
+        memberService.deleteMember(username, courseId);
+    }
 }
