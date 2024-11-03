@@ -1,4 +1,7 @@
 spring:
+  config:
+    import: "optional:env"
+
   datasource:
     url: jdbc:mysql://localhost:3307/coursera
     username: root

@@ -1,12 +1,20 @@
 spring:
+  config:
+    import: "optional:env"
+
   datasource:
-    url: ${MYSQL_URL_PROD}
-    username: ${MYSQL_USERNAME_PROD}
-    password: ${MYSQL_PASSWORD_PROD}
+    url: jdbc:mysql://coursera-coursera.b.aivencloud.com:24525/coursera
+    username: avnadmin
+    password: AVNS_R1BM6EBrJDb5bdoI9mG
+#    url: ${MYSQL_URL_PROD}
+#    username: ${MYSQL_USERNAME_PROD}
+#    password: ${MYSQL_PASSWORD_PROD}
 
   data:
     mongodb:
-      uri: ${MONGO_URI_PROD}
+      uri: mongodb+srv://tin:tin@coursera.8qcfm.mongodb.net/mongo-coursera?retryWrites=true&w=majority&appName=Coursera
+#      uri: ${MONGO_URI_PROD}
 
 frontend:
   url: https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io
+#  url: http://localhost:4200

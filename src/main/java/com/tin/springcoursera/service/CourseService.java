@@ -42,6 +42,7 @@ public class CourseService {
         Course course = Course.builder().
                 name(request.getName()).
                 description(request.getDescription()).
+                price(request.getPrice()).
                 build();
         return courseRepository.save(course);
     }
@@ -55,6 +56,7 @@ public class CourseService {
         course.setName(request.getName());
         course.setDescription(request.getDescription());
         course.setIntroduction(request.getIntroduction());
+        course.setPrice(request.getPrice());
 
         return courseRepository.save(course);
     }

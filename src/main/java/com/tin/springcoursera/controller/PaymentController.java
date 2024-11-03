@@ -11,7 +11,6 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/api/paypal")
-@CrossOrigin(origins = "http://localhost:4200, https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io")
 public class PaymentController {
     @Autowired
     private PaypalService paypalService;

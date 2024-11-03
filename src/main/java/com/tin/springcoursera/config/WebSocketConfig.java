@@ -31,7 +31,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io", "http://localhost:4200")
+                .setAllowedOrigins("https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io", "https://vuongnhattin-coursera.azurewebsites.net", "http://localhost:4200")
                 .withSockJS();
     }
 
