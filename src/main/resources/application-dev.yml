@@ -10,3 +10,6 @@ spring:
       host: localhost
       port: 27017
       database: mongo-coursera
+
+frontend:
+  url: http://localhost:4200

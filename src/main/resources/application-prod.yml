@@ -7,3 +7,6 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_URI_PROD}
+
+frontend:
+  url: https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io

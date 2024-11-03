@@ -1,0 +1,1 @@
+alter table course add column price decimal(10, 2) not null default 0;

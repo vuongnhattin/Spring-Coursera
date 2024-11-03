@@ -29,6 +29,10 @@ public class CourseService {
         return PageResponse.from(responses);
     }
 
+    public Course getCourseById(int courseId) {
+        return courseRepository.findById(courseId).orElseThrow(() -> new AppException(404, COURSE_NOT_FOUND));
+    }
+
     public Course getCourse(Integer id) {
         return courseRepository.findById(id).orElseThrow(() -> new AppException(404, COURSE_NOT_FOUND));
     }

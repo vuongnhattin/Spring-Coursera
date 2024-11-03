@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Entity
@@ -22,4 +23,5 @@ public class Course {
     private String introduction;
     @CreationTimestamp
     private Timestamp createdAt;
+    private BigDecimal price;
 }

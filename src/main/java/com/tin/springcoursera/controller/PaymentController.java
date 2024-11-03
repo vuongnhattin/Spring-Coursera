@@ -4,25 +4,27 @@ import com.tin.springcoursera.dto.response.CompletedOrder;
 import com.tin.springcoursera.dto.response.PaymentOrder;
 import com.tin.springcoursera.service.PaypalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
+import java.io.IOException;
 
 @RestController
-@RequestMapping(value = "/paypal")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "/api/paypal")
+@CrossOrigin(origins = "http://localhost:4200, https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io")
 public class PaymentController {
     @Autowired
     private PaypalService paypalService;
 
-    @PostMapping(value = "/init")
+    @PostMapping(value = "/create-order")
+    @PreAuthorize("not @auth.isMemberOfCourse(#courseId)")
     public PaymentOrder createPayment(
-            @RequestParam("sum") BigDecimal sum) {
-        return paypalService.createPayment(sum);
+            @RequestParam("courseId") int courseId) throws IOException {
+        return paypalService.createPayment(courseId);
     }
 
     @PostMapping(value = "/capture")
-    public CompletedOrder completePayment(@RequestParam("token") String token) {
+    public CompletedOrder completePayment(@RequestParam("token") String token) throws IOException {
         return paypalService.completePayment(token);
     }
 }
