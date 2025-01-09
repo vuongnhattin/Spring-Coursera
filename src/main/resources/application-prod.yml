@@ -16,5 +16,5 @@ spring:
 #      uri: ${MONGO_URI_PROD}
 
 frontend:
-  url: https://angular-coursera.azurewebsites.net
+  url: https://angular-coursera.agreeablesky-5161616d.northcentralus.azurecontainerapps.io
 #  url: http://localhost:4200

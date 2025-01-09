@@ -51,7 +51,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io", "https://vuongnhattin-coursera.azurewebsites.net", "http://localhost:4200", "https://angular-coursera.azurewebsites.net"));
+        configuration.setAllowedOrigins(List.of("https://angular-coursera.nicebeach-963cb903.northcentralus.azurecontainerapps.io", "https://vuongnhattin-coursera.azurewebsites.net", "http://localhost:4200", "https://angular-coursera.azurewebsites.net", "https://angular-coursera.agreeablesky-5161616d.northcentralus.azurecontainerapps.io"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowCredentials(true);
